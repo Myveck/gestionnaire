@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier invite
+{% endblock %}
+
+{% block body %}
+	<main class="container">
+		<section class="row">
+			<div class="col">
+				<h1>Modifier l'invité</h1>
+
+				{{ include('admin/guests/_form.html.twig', {'button_label': 'Update'}) }}
+
+				<a href="{{ path('admin_guests_index') }}" class="btn btn-secondary">retour vers la list</a>
+
+				{{ include('admin/guests/_delete_form.html.twig') }}
+			</div>
+		</section>
+	</main>
+{% endblock %}

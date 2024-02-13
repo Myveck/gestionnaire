@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Categories index
+{% endblock %}
+
+{% block body %}
+	<section class="container">
+		<div class="row">
+			<div class="col my-3">
+				<h1>Liste des catégories</h1>
+
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Id</th>
+							<th>Nom</th>
+							<th>Description</th>
+							<th>actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for category in categories %}
+							<tr>
+								<td>{{ category.id }}</td>
+								<td>{{ category.name }}</td>
+								<td>{{ category.description }}</td>
+								<td>
+									<a href="{{ path('admin_categories_show', {'id': category.id}) }}" class="btn btn-primary">Voir</a>
+									<a href="{{ path('admin_categories_edit', {'id': category.id}) }}" class="btn btn-secondary">Modifier</a>
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="4">Aucune catégorie n'a été trouvé</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+
+				<a href="{{ path('admin_categories_new') }}" class="btn btn-primary">Ajouter</a>
+			</div>
+		</div>
+	</section>
+{% endblock %}

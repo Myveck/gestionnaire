@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Students index
+{% endblock %}
+
+{% block body %}
+	<h1>Students index</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Nom</th>
+				<th>Prénom</th>
+				<th>Email</th>
+				<th>Adresse</th>
+				<th>Année</th>
+				<th>Date de naissance</th>
+				<th>Option</th>
+				<th>Filière</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for student in students %}
+				<tr>
+					<td>{{ student.lastName }}</td>
+					<td>{{ student.firstName }}</td>
+					<td>{{ student.email }}</td>
+					<td>{{ student.city }}
+						{{ student.quater }}</td>
+					<td>{{ student.studyYear }}</td>
+					<td>{{ student.birthday ? student.birthday|date('Y-m-d') : '' }}</td>
+					<td>{{ student.sector }}</td>
+					<td>{{ student.studyOption }}</td>
+					<td>
+						<a href="{{ path('admin_students_show', {'id': student.id}) }}" class="btn btn-primary">Voir</a>
+						<a href="{{ path('admin_students_edit', {'id': student.id}) }}" class="btn btn-secondary">Modifier</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="11">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('admin_students_new') }}">Create new</a>
+{% endblock %}

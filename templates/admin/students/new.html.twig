@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvel étudiant
+{% endblock %}
+
+{% block body %}
+	<section class="container py-3">
+		<div class="row py-3">
+			<div class="col">
+				<h1 class="my-3">Formulaire d'inscription UATM Gasa Formation</h1>
+
+				<div class="my-3">
+					{{ include('admin/students/_form.html.twig') }}
+				</div>
+
+				<a href="{{ path('admin_students_index') }}">Retours vers la liste</a>
+			</div>
+		</div>
+	</section>
+{% endblock %}

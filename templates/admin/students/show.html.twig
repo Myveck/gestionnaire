@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Students
+{% endblock %}
+
+{% block body %}
+	<main class="container my-3">
+		<section class="row my-3">
+			<div class="col my-3">
+				<h1>Détails de
+					{{ student.lastName }}</h1>
+
+				<table class="table">
+					<tbody>
+						<tr>
+							<th>Nom</th>
+							<td>{{ student.lastName }}</td>
+						</tr>
+						<tr>
+							<th>Prénom</th>
+							<td>{{ student.firstName }}</td>
+						</tr>
+						<tr>
+							<th>Email</th>
+							<td>{{ student.email }}</td>
+						</tr>
+						<tr>
+							<th>Adresse</th>
+							<td>{{ student.city }}
+								{{ student.quater }}
+							</td>
+						</tr>
+						<tr>
+							<th>Année</th>
+							<td>{{ student.studyYear }}</td>
+						</tr>
+						<tr>
+							<th>Date de naissance</th>
+							<td>{{ student.birthday ? student.birthday|date('Y-m-d H:i:s') : '' }}</td>
+						</tr>
+						<tr>
+							<th>Option</th>
+							<td>{{ student.studyOption }}</td>
+						</tr>
+						<tr>
+							<th>Filière</th>
+							<td>{{ student.sector }}</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<a href="{{ path('admin_students_index') }}" class="btn btn-primary my-3">Retour vers la liste</a>
+
+				<a href="{{ path('admin_students_edit', {'id': student.id}) }}" class="btn btn-secondary my-3 mx-3">Modifier</a>
+
+				{{ include('admin/students/_delete_form.html.twig') }}
+			</div>
+		</section>
+	</main>
+{% endblock %}

@@ -1,0 +1,52 @@
+<nav class="navbar shadow-sm navbar-expand-md">
+	<div class="container">
+		<a href="{{path('acceuil_index')}}" class="navbar-brand">
+			<span class="fw-bold text-secondary">Gestionnaire d'évenement
+			</span>
+		</a>
+
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse justify-content-center align-center" id="main-nav">
+			<ul class="navbar-nav justify-content-center">
+				<li class="nav-item">
+					<a class="nav-link" href="{{path('acceuil_index')}}">Acceuil</a>
+				</li>
+				{% if app.user %}
+					{% if app.user.roles[0] == 'ROLE_GESTION_ADMIN' or  app.user.roles[0] == 'ROLE_ADMIN'%}
+						<li class="nav-item">
+							<a class="nav-link" href="{{path('acceuil_manage')}}">Gérer</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('acceuil_tableau') }}">Tableau de bord</a>
+						</li>
+						{% else %}
+					{% endif %}
+				{% endif %}
+
+			</ul>
+		</div>
+		<ul class="nav justify-content-end">
+			{% if app.user %}
+				<li class="nav-item ms-2 d-none d-md-inline">
+					<a href="{{path('app_logout')}}" class="btn btn-primary">Deconnexion</a>
+				</li>
+				{% if app.user.roles[0] == 'ROLE_GESTION_ADMIN' or  app.user.roles[0] == 'ROLE_ADMIN'%}
+					<li class="nav-item ms-2 d-none d-md-inline">
+						<a href="{{path('admin_events_index')}}" class="btn btn-secondary">Gérer Evénements</a>
+					</li>
+				{% endif %}
+			{% else %}
+				<li class="nav-item ms-2 d-none d-md-inline">
+					<a href="{{path('app_login')}}" class="btn btn-light">Connexion</a>
+				</li>
+				<li class="nav-item ms-2 d-none d-md-inline">
+					<a href="{{path('app_register')}}" class="btn btn-primary">Inscription</a>
+				</li>
+			{% endif %}
+
+		</ul>
+	</div>
+</nav>

@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvel invité
+{% endblock %}
+
+{% block body %}
+	<h1>Créé un invité</h1>
+
+	{{ include('admin/guests/_form.html.twig') }}
+
+	<a href="{{ path('admin_guests_index') }}">retour vers la liste</a>
+{% endblock %}

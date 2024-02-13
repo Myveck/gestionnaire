@@ -1,0 +1,66 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Tableau de bord
+{% endblock %}
+
+{% block body %}
+	<main class="container py-3 ">
+		<h1>Tableau de bord</h1>
+		<div class="row mx-4 d-flex justify-content-center">
+			<p class="lead text-center">Quelques participants</p>
+			{% for participant in participants %}
+				<div class="col-3 card my-2 py-3 ms-3 shadow-lg">
+					<h5>{{ participant.user.name }}</h5>
+					<p>
+						Evénements :
+						<strong>{{ participant.event.name }}</strong>
+					</p>
+				</div>
+			{% endfor %}
+		</div>
+		<section class="row">
+			<div>
+				<article class="card ps-3 py-3 shadow my-3">
+					<h2>Evénements</h2>
+					<p>nombre total d'événement(s) :
+						<strong>{{ events | length }}</strong>
+					</p>
+					<div class="row">
+						<p>Statistiques individuelles :</p>
+						{% for event in events %}
+							<div class="col-2 card my-2 ms-3 shadow-lg">
+								{{ event.name }}
+								<p>Notes :
+									{{ notes[event.name] }}
+									%</p>
+								<div class="progress my-2">
+									<div class="progress-bar" role="progressbar" style="width: {{ notes[event.name] }}%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+								</div>
+								<a href="{{path('acceuil_details', {id : event.id})}}">Details</a>
+							</div>
+						{% endfor %}
+					</div>
+				</article>
+			</div>
+		</section>
+
+		<section class="row py-3">
+			<div>
+				<article class="card ps-3 py-3 shadow my-3">
+					<h2>Les commentaires</h2>
+					<div class="row">
+						{% for comment in comments %}
+							<div class="col-2 card my-3 py-3 ms-3 shadow-lg">
+								<p class="card-text">{{ comment.message }}
+									<br>
+									<em class="text-secondary">{{ comment.commentDate | date('d/m/Y H:i') }}</em>
+								</p>
+								<a href="{{ path('acceuil_details', {id : comment.event.id}) }}" class="btn btn-primary">Voir plus</a>
+							</div>
+						{% endfor %}
+					</div>
+				</article>
+			</div>
+		</section>
+	</main>
+{% endblock %}

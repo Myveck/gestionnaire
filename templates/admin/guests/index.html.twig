@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Guests index
+{% endblock %}
+
+{% block body %}
+	<h1>Liste des invités</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Nom</th>
+				<th>Email</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for guest in guests %}
+				<tr>
+					<td>{{ guest.guestName }}</td>
+					<td>{{ guest.email }}</td>
+					<td>
+						<a href="{{ path('admin_guests_show', {'id': guest.id}) }} " class="btn btn-primary">Voir</a>
+						<a href="{{ path('admin_guests_edit', {'id': guest.id}) }} " class="btn btn-secondary">Modifier</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="4">Aucun invité n'a été trouvé</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('admin_guests_new') }}" class="btn btn-primary">Créé un nouveau</a>
+{% endblock %}

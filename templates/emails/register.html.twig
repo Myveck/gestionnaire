@@ -1,0 +1,15 @@
+<h1>Activez votre compte</h1>
+
+<p>Bonjour
+	{{ user.name }},
+</p>
+
+<p>Votre inscription sur le site de gestionnaire d'événement est à valider en cliquant sur le lien ci-dessous</p>
+<p>
+	<a href="{{ absolute_url(path('verify_user', {token : token})) }}">un lien</a>
+</p>
+<p>
+	Si vous avez un problème, cliquez sur le lien ci-dessus
+	<a href="{{ absolute_url(path('verify_user', {token : token})) }}">{{ absolute_url(path('verify_user', {token : token})) }}</a>
+</p>
+<em>Ce lien expirera dans 1 semaine</em>

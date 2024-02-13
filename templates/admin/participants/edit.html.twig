@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier les participants
+{% endblock %}
+
+{% block body %}
+	<main class="container">
+		<section class="row">
+			<div class="col">
+				<h1>Modifier les participants</h1>
+
+				{{ include('admin/participants/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+				<a href="{{ path('admin_participants_index') }}" class="btn btn-secondary my-3">retour à la liste</a>
+
+				{{ include('admin/participants/_delete_form.html.twig') }}
+			</div>
+		</section>
+	</main>
+{% endblock %}

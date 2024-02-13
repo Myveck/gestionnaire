@@ -1,0 +1,92 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails sur
+	{{ event.name }}
+{% endblock %}
+
+{% block body %}
+	<main class="container">
+		<section class="row my-3">
+			<h3>
+				<strong>{{event.name}}</strong>
+			</h3>
+			<div class="col-3">
+				<div id="carouselExample" class="carousel slide shadow-lg">
+					<div class="carousel-inner">
+
+						{% for image in event.images %}
+							<div class="carousel-item {{ (loop.first) ? 'active' : ''}}">
+								<img src="{{ asset('assets/uploads/products/mini/300x300-') ~ image.name }}" class="d-block w-100" alt="{{ event.name }}">
+							</div>
+						{% endfor %}
+					</div>
+					<button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
+				</div>
+			</div>
+
+			<div class="col-9 my-3">
+				<article class="card shadow">
+					<div class="card-body">
+						<h2>{{ event.name }}</h2>
+						<p class="card-text">{{ event.description }}</p>
+						<a href="{{ path('admin_participants_participate', {id : event.id})}}" class="btn btn-primary">Participer</a>
+					</div>
+					<div class="row">
+						{% if app.user %}
+							<div class="col-4 mx-3">
+								<p>Noter l'événement
+									<br>
+									{% for i in 1.. 5 %}
+										<a href="{{ path('admin_participants_note', {id : event.id, note : i}) }}" class="col-3">{{ i }}</a>
+									{% endfor %}
+								</p>
+							</div>
+							<div class="col-6">
+								<p lead class="text-{{(note < 10) ? 'danger' : 'success'}}">note générale:
+									{{ note }}
+									%</p>
+							</div>
+						{% endif %}
+					</div>
+
+				</article>
+			</div>
+			{% if comments and comments != '' %}
+				{% for comment in comments %}
+					<div class="row-6 my-3">
+						<article class="card h-100">
+							<div class="card-body">
+								<h5 lead>{{ (comment.participant.user == app.user) ? 'Vous' : comment.participant.user.name}}
+									:
+									<em class="text-secondary">le
+										{{comment.commentDate|date('d/m/Y H:i')}}
+									</em>
+								</h5>
+								<p class="card-text">{{ comment.message }}
+									{% if app.user and comment.participant.user == app.user %}
+										<a href="{{ path('admin_comments_edit', {id : comment.id}) }}" class="col-1 ">Modifier</a>
+										{% include "admin/comments/_delete_form.html.twig" %}
+									{% endif %}
+								</p>
+							</div>
+
+						</article>
+					</div>
+				{% endfor %}
+			{% endif %}
+			<div class="row-6 my-3">
+				{{form_start(commentForm)}}
+				{{form_row(commentForm.message)}}
+				<button type="submit" class="btn btn-primary">Envoyer</button>
+				{{form_end(commentForm)}}
+
+			</section>
+		</main>
+	{% endblock %}

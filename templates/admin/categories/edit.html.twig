@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier les catégories
+{% endblock %}
+
+{% block body %}
+	<section class="container">
+		<div class="row">
+			<h1>Modification de la catégorie</h1>
+			<div class="col">
+				{{ include('admin/categories/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+				<a href="{{ path('admin_categories_index') }}">Retour vers les catégories</a>
+
+				{{ include('admin/categories/_delete_form.html.twig') }}
+			</div>
+		</div>
+	</section>
+
+{% endblock %}

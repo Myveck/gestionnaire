@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Participant
+{% endblock %}
+
+{% block body %}
+	<section class="container">
+		<div class="row">
+			<div class="col">
+				<h1>Enregistrez-vous</h1>
+
+				{{ include('admin/participants/_form.html.twig') }}
+
+				<a href="{{ path('admin_participants_index') }} " class=" my-3 btn btn-secondary">Retour vers la liste</a>
+			</div>
+		</div>
+	</section>
+{% endblock %}

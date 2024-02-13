@@ -1,0 +1,55 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Gérer
+{% endblock %}
+
+{% block body %}
+	<main class="container">
+		<section class="row my-4">
+			<h1>Bienvenue dans le menu gestion</h1>
+
+			<div class="col">
+				<table class="table my-4">
+					<thead>
+						<tr>
+							<td>Nom</td>
+							<td>Action</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Catgories</td>
+							<td>
+								<a href="{{path('admin_categories_index')}}" class="btn btn-primary">Gérer</a>
+							</td>
+						</tr>
+						<tr>
+							<td>Evénements</td>
+							<td>
+								<a href="{{ path('admin_events_index') }}" class="btn btn-primary">Gérer</a>
+							</td>
+						</tr>
+						<tr>
+							<td>Invités</td>
+							<td>
+								<a href="{{ path('admin_guests_index') }}" class="btn btn-primary">Gérer</a>
+							</td>
+						</tr>
+						<tr>
+							<td>Participants aux évenements</td>
+							<td>
+								<a href="{{path('admin_participants_index')}}" class="btn btn-primary">Gérer</a>
+							</td>
+						</tr>
+						<tr>
+							<td>Etudiants</td>
+							<td>
+								<a href="{{path('admin_students_index')}}" class="btn btn-primary">Gérer</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</section>
+	</main>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Guests
+{% endblock %}
+
+{% block body %}
+	<h1>Invité</h1>
+
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Id</th>
+				<td>{{ guest.id }}</td>
+			</tr>
+			<tr>
+				<th>Nom</th>
+				<td>{{ guest.guestName }}</td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td>{{ guest.email }}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<a href="{{ path('admin_guests_index') }}">retour vers la liste</a>
+
+	<a href="{{ path('admin_guests_edit', {'id': guest.id}) }}">Modifier</a>
+
+	{{ include('admin/guests/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Acceuil commentaires
+{% endblock %}
+
+{% block body %}
+	<main class="container">
+		<section class="row">
+			<div class="col">
+				<h1>Tous les commentaires</h1>
+
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Message</th>
+							<th>Date</th>
+							<th>actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for comment in comments %}
+							<tr>
+								<td>{{ comment.message }}</td>
+								<td>{{ comment.commentDate ? comment.commentDate|date('Y-m-d H:i:s') : '' }}</td>
+								<td>
+									<a href="{{ path('admin_comments_show', {'id': comment.id}) }}">Voir</a>
+									<a href="{{ path('admin_comments_edit', {'id': comment.id}) }}">Modifier</a>
+								</td>
+							</tr>
+						{% else %}
+							<tr>
+								<td colspan="4">Aucun commentaire n'a été trouvé</td>
+							</tr>
+						{% endfor %}
+					</tbody>
+				</table>
+
+				<a href="{{ path('admin_comments_new') }}">Créé un nouveau commentaire</a>
+			</div>
+		</section>
+	</main>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Participants index
+{% endblock %}
+
+{% block body %}
+	<h1>Participants index</h1>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Email</th>
+				<th>Telephone</th>
+				<th>Evénement</th>
+				<th>Created_at</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for participant in participants %}
+				<tr>
+					<td>{{ participant.user.Name }}</td>
+					<td>{{ participant.user.email }}</td>
+					<td>{{ participant.user.telephone }}</td>
+					<td>{{ participant.event.name }}</td>
+					<td>{{ participant.createdAt ? participant.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+					<td>
+						<a href="{{ path('admin_participants_show', {'id': participant.id}) }}" class="btn btn-primary">Voir</a>
+						<a href="{{ path('admin_participants_edit', {'id': participant.id}) }}" class="btn btn-secondary">Modifier</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="6">Aucun participant n'a été trouvé</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('admin_participants_new') }}">Ajouter un participant</a>
+{% endblock %}

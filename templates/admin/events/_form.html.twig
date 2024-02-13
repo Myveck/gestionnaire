@@ -1,0 +1,22 @@
+{{ form_start(form) }}
+{{ form_row(form.name) }}
+{{ form_row(form.description) }}
+{{ form_row(form.city) }}
+{{ form_row(form.quater) }}
+{{ form_row(form.event_date) }}
+{{ form_row(form.categorie) }}
+{{ form_row(form.images) }}
+
+{# {% if app.request.attributes.get('_route') == 'admin_events_edit' %}
+	<h2>Image</h2>
+	{% for image in event.images %}
+		<div class="col-6 my-3 shadow">
+			<img src="{{ asset('assets/uploads/products/mini/300x300-' ~ image.name ) }}" alt="{{ event.name }}" width="150">
+			{% include "admin/images/_delete_form.html.twig" %}
+		</div>
+	{% endfor %}
+{% endif %} #}
+
+
+<button class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+{{ form_end(form) }}

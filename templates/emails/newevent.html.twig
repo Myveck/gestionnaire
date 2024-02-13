@@ -1,0 +1,46 @@
+<h1>Nouvel événement :
+	{{ event.name }}</h1>
+
+<p>Bonjour
+	{{ user.name }},
+</p>
+
+<p>Il y'a un nouvel événement à venir au nom de :
+	<strong>{{ event.name }},</strong>
+	il aura lieu à la date ci-dessous
+	<em>{{ event.eventDate | date('d/m/Y H:i')}}</em>
+	et à cette adresse :
+	{{ event.quater }}
+	{{ event.city }}
+	<br>
+	Voici une vue un peu globale de celui-ci
+</p>
+
+<p>
+	nom :
+	{{ event.name }}
+	<br>
+	date :
+	{{ event.eventDate | date('d/m/Y H:i') }}
+	<br>
+	adresse :
+	{{ event.quater }}
+	{{ event.city }}
+</p>
+
+<p>
+	Nous espérons que vous serez présent
+	<br>
+</p>
+
+<p>cliquez
+	<a href="{{ absolute_url(path('acceuil_details', {id : event.id})) }}">ici</a>
+	pour plus de détails et pour y participer !</p>
+
+<p>
+	Un problème avec le lien ci-dessus, utilisez celui en dessous
+	<a type="submit" href="{{ absolute_url(path('acceuil_details', {id : event.id})) }}" class="btn btn-primary">{{ absolute_url(path('acceuil_details', {id : event.id})) }}</a>
+</p>
+
+
+<em>La team gestionnaire de projet</em>

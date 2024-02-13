@@ -1,0 +1,21 @@
+<h1>Participation à l'événement
+	{{ event.name }}</h1>
+
+<p>Bonjour
+	{% if user == app.user %}
+		{{ user.name }},
+	{% else %}
+		{{ user.guestName}}
+	{% endif %}
+
+</p>
+
+<p>Vous êtes désormais un participants de l'événement
+	<strong>{{ event.name }}</strong>
+	qui aura lieu le
+	<em>{{ event.eventDate | date('d/m/Y H:i')}}</em>
+	à l'adresse :
+	{{ event.quater }}
+	{{ event.city }}
+</p>
+<em lead>La team gestionnaire d'événement</em>

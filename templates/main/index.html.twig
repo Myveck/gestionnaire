@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MainController!
+{% endblock %}
+
+{% block body %}
+	<main class="container">
+		<section class="row my-3">
+			<h1>Gestionnaire d'événement</h1>
+			<div class="row shadow-sm py-3">
+				<h3 class="lead text-center my-3">Filtrer par</h3>
+				<div class="d-flex justify-content-around">
+					{% for category in categories %}
+						<div>
+							<a href="{{ path('acceuil_filtre', {id : category.id}) }}" class="btn btn-secondary">{{ category.name }}</a>
+						</div>
+					{% endfor %}
+					<div>
+						<a href="{{ path('acceuil_filtre', {id : 'date'}) }}" class="btn btn-secondary">date</a>
+					</div>
+				</div>
+			</div>
+
+			{% if categories is defined %}
+
+				{% for category in categories %}
+					<h1>
+						<strong>{{category.name}}</strong>
+					</h1>
+					{% for event in events %}
+						{% if event.categorie == category %}
+							<div class="col-3 my-3">
+								<article class="card h-100 shadow">
+									<img src="{{ asset('assets/uploads/products/mini/300x300-'~ event.images[0].name ) }}" alt="{{ event.name }}" class="card-img-top">
+									<div class="card-body">
+										<h2>{{ event.name }}</h2>
+										<p class="card-text">{{ event.description }}</p>
+										<a href="{{path('acceuil_details', {id: event.id})}}" class="btn btn-primary">Détails</a>
+									</div>
+								</article>
+							</div>
+						{% endif %}
+
+					{% endfor %}
+				{% endfor %}
+			{% endif %}
+		</section>
+	</main>
+{% endblock %}

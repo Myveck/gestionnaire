@@ -1,0 +1,46 @@
+<h1>Changements sur l'événement
+	{{ event.name }}</h1>
+
+<p>Bonjour
+	{{ user.name }},
+</p>
+
+<p>l'événement
+	<strong>{{ event.name }}</strong>
+	qui aurait dû avoir lieu le
+	<em>{{ event.eventDate | date('d/m/Y H:i')}}</em>
+	à l'adresse :
+	{{ event.quater }}
+	{{ event.city }}
+	à été modifier de la sorte :
+</p>
+
+<p>
+	nom :
+	{{ event.name }}
+	<br>
+	date :
+	{{ event.eventDate | date('d/m/Y H:i') }}
+	<br>
+	adresse :
+	{{ event.quater }}
+	{{ event.city }}
+</p>
+
+<p>
+	Nous espérons que vous serez bel et bien présent
+	<br>
+	Portez-vous bien !
+</p>
+
+<p>cliquez
+	<a href="{{ absolute_url(path('acceuil_details', {id : event.id})) }}">ici</a>
+	pour voir l'événement</p>
+
+<p>
+	Un problème avec le lien ci-dessus, utilisez celui en dessous
+	<a type="submit" href="{{ absolute_url(path('acceuil_details', {id : event.id})) }}" class="btn btn-primary">{{ absolute_url(path('acceuil_details', {id : event.id})) }}</a>
+</p>
+
+
+<em>La team gestionnaire de projet</em>
